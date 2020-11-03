@@ -5,11 +5,12 @@ class Book:
     """
     book_list = []
 
-    def __init__(self, name, author, price, year_published):
+    def __init__(self, name, author, price, year_published, amount):
         self.name = name
         self.author = author
         self.price = price
         self.publish_date = year_published
+        self.amount = amount
         Book.book_list.append(self)
 
     def __str__(self):
