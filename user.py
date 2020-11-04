@@ -37,19 +37,8 @@ class Costumer(User):
     """
     costumer_list = []  # all costumers
 
-    def __init__(self, *args, **kwargs):
-        self.cart = []  # costumer cart
+    def __init__(self, order, *args, **kwargs):
         Costumer.costumer_list.append(self)
         super().__init__(*args, **kwargs)
 
-    def add_to_card(self, book):
-        """
-        add book to Costumer cart
-        """
-        self.cart.append(book)
 
-    def show_cart(self):
-        """
-        show Costumer cart
-        """
-        return [book for book in self.cart]
