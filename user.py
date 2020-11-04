@@ -31,14 +31,14 @@ class Seller(User):
         return self.__has_access
 
 
-class Costumer(User):
+class Customer(User):
     """
      an inheritance from User class, to initiate Costumers in bookstore
     """
-    costumer_list = []  # all costumers
+    customer_list = []  # all costumers
 
     def __init__(self, order, *args, **kwargs):
-        Costumer.costumer_list.append(self)
+        Customer.customer_list.append(self)
         super().__init__(*args, **kwargs)
 
 
