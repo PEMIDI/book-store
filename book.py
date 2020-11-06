@@ -1,4 +1,4 @@
-from uuid import uuid4
+import json
 
 
 class Book:
@@ -13,7 +13,6 @@ class Book:
         self.price = price
         self.publish_date = year_published
         self.amount = amount
-        self.uuid = uuid4()
         Book.book_list.append(self)
 
     def __str__(self):
@@ -25,3 +24,6 @@ class Book:
             if book.name == book_name:
                 return True
         return False
+
+    def serialize(self):
+        return json.dumps(self)

@@ -1,11 +1,12 @@
 from book import Book
+import json
+from finance import Order
 
 
 class User:
     """
     a class to initiate Base User
     """
-
     def __init__(self, username, password, fullname, email):
         self.username = username
         self.password = password
@@ -30,15 +31,27 @@ class Seller(User):
     def has_access(self):
         return self.__has_access
 
+    def serialize(self):
+        return json.dumps(self)
+
 
 class Customer(User):
     """
-     an inheritance from User class, to initiate Costumers in bookstore
+     an inheritance from User class, to initiate Costumers
     """
     customer_list = []  # all costumers
 
-    def __init__(self, order, *args, **kwargs):
-        Customer.customer_list.append(self)
+    def __init__(self, order=Order(), *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.order = order
+        Customer.customer_list.append(self)
 
+    def add_to_order(self, book):
+        book = book.__dict__
+        cart = {
+            'name': book['name'], 'price': book['price']
+        }
+        self.order.add_to_cart(**cart)
 
+    def serialize(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
