@@ -39,7 +39,7 @@ class Seller(User):
             'fullname': fullname,
             'email': email
         }
-        Seller(**result)
+        return Seller(**result)
 
     @staticmethod
     def add_book(cls):
@@ -75,7 +75,6 @@ class Customer(User):
         self.order = order
         Customer.customer_list.append(self)
 
-<<<<<<< HEAD
     def add_to_order(self, book):
         book = book.__dict__
         cart = {
@@ -85,7 +84,7 @@ class Customer(User):
 
     def serialize(self):
         return json.dumps(self, default=lambda o: o.__dict__)
-=======
+
     @classmethod
     def sign_up(cls):
         """
@@ -101,5 +100,5 @@ class Customer(User):
             'fullname': fullname,
             'email': email
         }
-        Seller(**result)
->>>>>>> master
+        return Seller(**result)
+
