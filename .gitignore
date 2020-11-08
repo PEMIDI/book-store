@@ -2,4 +2,5 @@
 .idea/
 __init__.py
 __pycache__/
-pemidi_test.py
+pemidi*
+

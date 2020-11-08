@@ -26,10 +26,39 @@ class Seller(User):
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.__has_access = False
 
-    def has_access(self):
-        return self.__has_access
+    @classmethod
+    def sign_up(cls):
+        username = input("Please enter a Username\n")
+        password = input("Please enter a Password\n")
+        fullname = input("Enter your Fullname\n")
+        email = input("Enter your Email\n")
+        result = {
+            'username': username,
+            'password': password,
+            'fullname': fullname,
+            'email': email
+        }
+        Seller(**result)
+
+    @staticmethod
+    def add_book(cls):
+        """
+        static method to add book by seller (Admin)
+        """
+        name = input("Enter Book name\n")
+        author = input("Enter author of book\n")
+        price = int(input("enter price of book\n"))
+        publish_date = int(input("Enter publish date\n"))
+        amount = input("enter amount of book\n")
+        result = {
+            'name': name,
+            'author': author,
+            'price': price,
+            'publish_date': publish_date,
+            'amount' : amount
+        }
+        Book(**result)
 
     def serialize(self):
         return json.dumps(self)
@@ -46,6 +75,7 @@ class Customer(User):
         self.order = order
         Customer.customer_list.append(self)
 
+<<<<<<< HEAD
     def add_to_order(self, book):
         book = book.__dict__
         cart = {
@@ -55,3 +85,21 @@ class Customer(User):
 
     def serialize(self):
         return json.dumps(self, default=lambda o: o.__dict__)
+=======
+    @classmethod
+    def sign_up(cls):
+        """
+        a class method to sign_up Costumer
+        """
+        username = input("Please enter a Username\n")
+        password = input("Please enter a Password\n")
+        fullname = input("Enter your Fullname\n")
+        email = input("Enter your Email\n")
+        result = {
+            'username': username,
+            'password': password,
+            'fullname': fullname,
+            'email': email
+        }
+        Seller(**result)
+>>>>>>> master
