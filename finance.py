@@ -21,6 +21,12 @@ class Order:
         for item in self.cart:
             print(item)
 
+    def bill(self):
+        result = 0
+        for item in self.cart:
+            result += item['price']
+        return result
+
     def serialize(self):
         result = {
             'cart': self.cart,
