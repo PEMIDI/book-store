@@ -18,8 +18,7 @@ class Order:
         self.cart.append(book)
 
     def show_cart(self):
-        for i, item in enumerate(self.cart, start=1):
-            print(f"#{i} = {item['name']} with {item['price']}$")
+        return self.cart
 
     def bill(self):
         result = 0

@@ -32,6 +32,10 @@ class Book:
     def show_books(cls):
         return Book.book_list
 
+    @classmethod
+    def data(cls):
+        """
+        a class method returns book_list data in json type
+        """
+        return json.dumps([b.__dict__ for b in Book.book_list])
 
-    def serialize(self):
-        return json.dumps(self.__dict__)

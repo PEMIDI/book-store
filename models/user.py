@@ -1,6 +1,6 @@
-from book import Book
+from models.book import Book
 import json
-from finance import Order
+from models.finance import Order
 
 
 class User:
@@ -25,9 +25,11 @@ class Seller(User):
     """
     to initiate Seller, inheritance from User class
     """
+    seller_lists = []
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        Seller.seller_lists.append(self)
 
     @classmethod
     def sign_up(cls):
@@ -65,6 +67,13 @@ class Seller(User):
     def serialize(self):
         return json.dumps(self)
 
+    @classmethod
+    def data(cls):
+        """
+        a class method returns all sellers data
+        """
+        return json.dumps([s.__dict__ for s in cls.seller_lists])
+
 
 class Customer(User):
     """
@@ -77,17 +86,18 @@ class Customer(User):
         self.order = order
         Customer.customer_list.append(self)
 
-    def add_to_order(self, book):
+    @staticmethod
+    def add_to_order(customer, book_id):
         """
-        a ,method to add book to order.cart
+        a method to add book to order.cart
         show means show books, default is None
         """
-        book = book.__dict__
-        cart = {
-            'name': book['name'], 'price': book['price']
-        }
+        for book in Book.book_list:
+            if book_id == book.__dict__['book_id']:
+                print(book.__dict__)
+                customer.order.add_to_cart(**book.__dict__)
 
-        self.order.add_to_cart(**cart)
+        return False
 
     def serialize(self):
         return json.dumps(self, default=lambda o: o.__dict__)
@@ -120,4 +130,19 @@ class Customer(User):
             return Customer(**result)
         return Customer(*args, **kwargs)
 
+    @classmethod
+    def check_credentials(cls):
+        username = input("enter username\n")
+        password = input('enter password\n')
+        for customer in Customer.customer_list:
+            if customer.__dict__['username'] == username and customer.__dict__['password'] == password:
+                return customer
 
+        return None
+
+    @classmethod
+    def data(cls):
+        """
+        a class method returns customer lists in a json type
+        """
+        return json.dumps([c.__dict__ for c in cls.customer_list], default=lambda o: o.__dict__)
