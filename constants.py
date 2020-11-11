@@ -1,4 +1,0 @@
-
-
-PATH = 'storage'
-
