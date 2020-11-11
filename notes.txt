@@ -1,0 +1,7 @@
+* save data for books
+* save data for customer
+*save data for seller
+
++ load_data for books
++ load_data for customer
++ load_data for seller
