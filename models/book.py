@@ -6,6 +6,7 @@ class Book:
     a class to initiate books
     """
     book_list = []
+    book_id = 1
 
     def __init__(self, name, author, price, year_published, amount):
         self.name = name
@@ -13,7 +14,9 @@ class Book:
         self.price = price
         self.publish_date = year_published
         self.amount = amount
+        self.book_id = Book.book_id
         Book.book_list.append(self)
+        Book.book_id += 1
 
     def __str__(self):
         return self.name
@@ -25,5 +28,10 @@ class Book:
                 return True
         return False
 
+    @classmethod
+    def show_books(cls):
+        return Book.book_list
+
+
     def serialize(self):
-        return json.dumps(self)
+        return json.dumps(self.__dict__)
