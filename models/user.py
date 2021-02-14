@@ -31,7 +31,7 @@ class Seller(User):
         super().__init__(*args, **kwargs)
         Seller.seller_lists.append(self)
         
-    @staticmethod
+    @classmethod
     def sign_up():
         username = input("Please enter a Username\n")
         password = input("Please enter a Password\n")
@@ -43,7 +43,7 @@ class Seller(User):
             'fullname': fullname,
             'email': email
         }
-        return Seller(**result)
+        return cls(**result)
     
     @staticmethod
     def add_book():
@@ -127,8 +127,8 @@ class Customer(User):
                 'fullname': fullname,
                 'email': email
             }
-            return Customer(**result)
-        return Customer(*args, **kwargs)
+            return cls(**result)
+        return cls(**args, **kwargs)
 
     @classmethod
     def check_credentials(cls):
