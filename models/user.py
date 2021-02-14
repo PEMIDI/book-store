@@ -30,9 +30,9 @@ class Seller(User):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         Seller.seller_lists.append(self)
-
-    @classmethod
-    def sign_up(cls):
+        
+    @staticmethod
+    def sign_up():
         username = input("Please enter a Username\n")
         password = input("Please enter a Password\n")
         fullname = input("Enter your Fullname\n")
@@ -44,9 +44,9 @@ class Seller(User):
             'email': email
         }
         return Seller(**result)
-
+    
     @staticmethod
-    def add_book(cls):
+    def add_book():
         """
         static method to add book by seller (Admin)
         """
