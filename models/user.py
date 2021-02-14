@@ -128,7 +128,7 @@ class Customer(User):
                 'email': email
             }
             return cls(**result)
-        return cls(**args, **kwargs)
+        return cls(*args, **kwargs)
 
     @classmethod
     def check_credentials(cls):
